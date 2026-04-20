@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FAANG Job Hunt Roadmap — 30 Day Sprint</title>
+<style>
+:root {
+  --bg:        #0d1117;
+  --surface:   #161b22;
+  --surface2:  #1c2128;
+  --border:    #30363d;
+  --border2:   #21262d;
+  --text:      #e6edf3;
+  --muted:     #8b949e;
+  --faint:     #484f58;
+
+  --blue:      #58a6ff;
+  --blue-dim:  #1f6feb;
+  --green:     #3fb950;
+  --green-dim: #196c2e;
+  --yellow:    #d29922;
+  --yellow-dim:#272115;
+  --purple:    #bc8cff;
+  --purple-dim:#2e1f5e;
+  --red:       #f85149;
+  --orange:    #ffa657;
+  --cyan:      #56d364;
+  --pink:      #ff7b72;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #0d1117 0%, #0d1f3c 40%, #130d2e 100%);
+  padding: 72px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.hero::before {
+  content:'';
+  position:absolute;
+  width:700px; height:700px;
+  background: radial-gradient(circle, rgba(88,166,255,0.08) 0%, transparent 65%);
+  top:-200px; left:50%; transform:translateX(-50%);
+  pointer-events:none;
+}
+.hero::after {
+  content:'';
+  position:absolute;
+  width:400px; height:400px;
+  background: radial-gradient(circle, rgba(188,140,255,0.06) 0%, transparent 65%);
+  bottom:-100px; right:10%;
+  pointer-events:none;
+}
+.hero-badge {
+  display:inline-block;
+  background: rgba(88,166,255,0.1);
+  border: 1px solid rgba(88,166,255,0.3);
+  color: var(--blue);
+  font-size:11px; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase;
+  padding:4px 14px; border-radius:20px;
+  margin-bottom:20px;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight:800;
+  color: var(--text);
+  margin-bottom:12px;
+  line-height:1.2;
+}
+.hero h1 span { color: var(--blue); }
+.hero p {
+  color: var(--muted);
+  font-size:16px;
+  max-width:560px;
+  margin:0 auto 32px;
+}
+.hero-stats {
+  display:flex; gap:32px; justify-content:center; flex-wrap:wrap;
+  margin-top:32px;
+}
+.stat {
+  background: rgba(22,27,34,0.8);
+  border: 1px solid var(--border);
+  border-radius:10px;
+  padding:16px 24px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+}
+.stat-num {
+  font-size:1.8rem; font-weight:800;
+  color: var(--blue);
+  display:block;
+}
+.stat-label {
+  font-size:12px; color: var(--muted);
+  text-transform:uppercase; letter-spacing:0.06em;
+}
+
+/* ── NAV PILLS ── */
+.phase-nav {
+  display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
+  padding:24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position:sticky; top:0; z-index:100;
+}
+.phase-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 16px; border-radius:20px;
+  font-size:12px; font-weight:600;
+  text-decoration:none; cursor:pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+.pill-1 { background:rgba(88,166,255,0.1); border-color:rgba(88,166,255,0.3); color:var(--blue); }
+.pill-2 { background:rgba(188,140,255,0.1); border-color:rgba(188,140,255,0.3); color:var(--purple); }
+.pill-3 { background:rgba(63,185,80,0.1); border-color:rgba(63,185,80,0.3); color:var(--green); }
+.phase-pill:hover { transform:translateY(-1px); filter:brightness(1.2); }
+
+/* ── MAIN LAYOUT ── */
+.container { max-width:1100px; margin:0 auto; padding:48px 24px 120px; }
+
+/* ── SECTION HEADERS ── */
+.phase-header {
+  display:flex; align-items:center; gap:16px;
+  margin: 56px 0 32px;
+  padding-bottom:16px;
+  border-bottom: 1px solid var(--border);
+}
+.phase-icon {
+  width:48px; height:48px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; flex-shrink:0;
+}
+.icon-1 { background:rgba(88,166,255,0.15); border:1px solid rgba(88,166,255,0.3); }
+.icon-2 { background:rgba(188,140,255,0.15); border:1px solid rgba(188,140,255,0.3); }
+.icon-3 { background:rgba(63,185,80,0.15); border:1px solid rgba(63,185,80,0.3); }
+.phase-title { flex:1; }
+.phase-title h2 { font-size:1.5rem; font-weight:700; color:var(--text); }
+.phase-title p  { color:var(--muted); font-size:13px; margin-top:2px; }
+.phase-tag {
+  font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+  padding:3px 10px; border-radius:12px;
+}
+.tag-1 { background:rgba(88,166,255,0.15); color:var(--blue); }
+.tag-2 { background:rgba(188,140,255,0.15); color:var(--purple); }
+.tag-3 { background:rgba(63,185,80,0.15); color:var(--green); }
+
+/* ── WEEK GRID ── */
+.week-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap:16px;
+  margin-bottom:40px;
+}
+
+/* ── DAY CARD ── */
+.day-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.day-card:hover { border-color:var(--blue-dim); transform:translateY(-2px); }
+.day-card.weekend { opacity:0.7; }
+.day-card.weekend .day-head { background: var(--surface2); }
+
+.day-head {
+  padding:14px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid var(--border2);
+}
+.day-label {
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;
+}
+.day-name { font-size:15px; font-weight:700; color:var(--text); }
+.day-hours {
+  font-size:11px; font-weight:600;
+  background: rgba(88,166,255,0.1);
+  border:1px solid rgba(88,166,255,0.2);
+  color:var(--blue);
+  padding:2px 8px; border-radius:10px;
+}
+.day-hours.wknd {
+  background: rgba(139,148,158,0.1);
+  border-color:rgba(139,148,158,0.2);
+  color:var(--muted);
+}
+.day-body { padding:14px 16px; }
+
+.todo-list { list-style:none; }
+.todo-list li {
+  display:flex; align-items:flex-start; gap:8px;
+  padding:5px 0;
+  font-size:13px;
+  color:var(--text);
+  border-bottom:1px solid var(--border2);
+  cursor:pointer;
+  transition: opacity 0.2s;
+}
+.todo-list li:last-child { border-bottom:none; }
+.todo-list li.done { opacity:0.45; }
+.todo-list li.done .todo-text { text-decoration:line-through; color:var(--muted); }
+
+.todo-list input[type="checkbox"] {
+  appearance:none; -webkit-appearance:none;
+  width:15px; height:15px; min-width:15px;
+  border:2px solid var(--border);
+  border-radius:3px;
+  margin-top:2px;
+  cursor:pointer;
+  position:relative;
+  transition: background 0.15s, border-color 0.15s;
+  background: transparent;
+}
+.todo-list input[type="checkbox"]:checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+.todo-list input[type="checkbox"]:checked::after {
+  content:'';
+  position:absolute;
+  left:2px; top:-1px;
+  width:5px; height:9px;
+  border:2px solid #0d1117;
+  border-top:none; border-left:none;
+  transform:rotate(45deg);
+  display:block;
+}
+.tag-inline {
+  font-size:10px; font-weight:700; text-transform:uppercase;
+  padding:1px 6px; border-radius:4px; margin-left:4px;
+  flex-shrink:0; margin-top:2px;
+}
+.t-project { background:rgba(88,166,255,0.15); color:var(--blue); }
+.t-dsa     { background:rgba(255,166,87,0.15);  color:var(--orange); }
+.t-sys     { background:rgba(188,140,255,0.15); color:var(--purple); }
+.t-hr      { background:rgba(63,185,80,0.15);   color:var(--green); }
+.t-java    { background:rgba(248,81,73,0.15);   color:var(--pink); }
+.t-mock    { background:rgba(210,153,34,0.15);  color:var(--yellow); }
+.t-apply   { background:rgba(86,211,100,0.15);  color:var(--cyan); }
+
+.day-footer {
+  padding:10px 16px;
+  background: var(--surface2);
+  border-top:1px solid var(--border2);
+  font-size:12px;
+  color:var(--muted);
+  font-style:italic;
+}
+
+/* ── FOCUS BREAKDOWN ── */
+.focus-row {
+  display:flex; gap:8px; flex-wrap:wrap;
+  padding:10px 16px 12px;
+}
+.focus-chip {
+  font-size:11px; padding:2px 10px; border-radius:10px;
+  font-weight:600;
+}
+
+/* ── RESOURCES SECTION ── */
+.resources-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap:14px;
+  margin-bottom:48px;
+}
+.resource-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius:10px;
+  padding:18px;
+}
+.resource-card h4 {
+  font-size:13px; font-weight:700; color:var(--text);
+  margin-bottom:10px;
+  display:flex; align-items:center; gap:8px;
+}
+.resource-card ul { list-style:none; }
+.resource-card ul li {
+  font-size:12px; color:var(--muted);
+  padding:4px 0;
+  border-bottom:1px solid var(--border2);
+  display:flex; align-items:center; gap:6px;
+}
+.resource-card ul li:last-child { border-bottom:none; }
+.resource-card ul li::before { content:'→'; color:var(--faint); }
+
+/* ── STRATEGY CARD ── */
+.strategy {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  margin-bottom:16px;
+}
+.strategy h3 {
+  font-size:15px; font-weight:700; color:var(--text);
+  margin-bottom:12px;
+  display:flex; align-items:center; gap:10px;
+}
+.strategy p { font-size:13px; color:var(--muted); margin-bottom:8px; }
+.strategy p:last-child { margin-bottom:0; }
+
+/* ── TIMELINE BAR ── */
+.timeline {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  margin-bottom:48px;
+}
+.timeline h3 {
+  font-size:14px; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:0.08em;
+  margin-bottom:20px;
+}
+.tl-row {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:14px;
+}
+.tl-row:last-child { margin-bottom:0; }
+.tl-label {
+  font-size:12px; font-weight:600; color:var(--muted);
+  width:80px; flex-shrink:0;
+}
+.tl-bar-wrap {
+  flex:1;
+  background: var(--surface2);
+  border-radius:6px;
+  height:28px;
+  overflow:hidden;
+  border:1px solid var(--border2);
+}
+.tl-bar {
+  height:100%;
+  border-radius:6px;
+  display:flex; align-items:center;
+  padding:0 10px;
+  font-size:11px; font-weight:700;
+  white-space:nowrap;
+}
+.tl-note { font-size:11px; color:var(--faint); width:100px; text-align:right; flex-shrink:0; }
+
+/* ── MILESTONE BADGES ── */
+.milestones {
+  display:flex; gap:12px; flex-wrap:wrap; margin-bottom:48px;
+}
+.milestone {
+  flex:1; min-width:180px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius:10px;
+  padding:16px;
+  text-align:center;
+}
+.milestone-icon { font-size:28px; margin-bottom:8px; }
+.milestone-day { font-size:11px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:0.06em; }
+.milestone-title { font-size:14px; font-weight:700; color:var(--text); margin-top:4px; }
+.milestone-desc { font-size:12px; color:var(--muted); margin-top:4px; }
+
+/* ── DIVIDER ── */
+.section-divider {
+  height:1px; background:var(--border); margin:48px 0;
+}
+
+/* ── WARNING BOX ── */
+.callout {
+  border-radius:8px; padding:14px 18px; margin-bottom:20px;
+  font-size:13px; display:flex; gap:12px; align-items:flex-start;
+}
+.callout-blue  { background:rgba(88,166,255,0.07); border:1px solid rgba(88,166,255,0.25); }
+.callout-yellow{ background:rgba(210,153,34,0.07); border:1px solid rgba(210,153,34,0.25); }
+.callout-green { background:rgba(63,185,80,0.07);  border:1px solid rgba(63,185,80,0.25); }
+.callout-icon  { font-size:18px; flex-shrink:0; }
+.callout-body  { color:var(--muted); line-height:1.6; }
+.callout-body strong { color:var(--text); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+/* ── FOOTER ── */
+footer {
+  text-align:center; padding:40px 24px;
+  color:var(--faint); font-size:12px;
+  border-top:1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<div class="hero">
+  <div class="hero-badge">FAANG-Level Preparation Sprint</div>
+  <h1>30-Day Job Hunt <span>Roadmap</span></h1>
+  <p>Working professional edition — weekday evenings + full weekends. Interview-ready by Day 15.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">30</span><span class="stat-label">Total Days</span></div>
+    <div class="stat"><span class="stat-num">~3h</span><span class="stat-label">Weekday Daily</span></div>
+    <div class="stat"><span class="stat-num">~6h</span><span class="stat-label">Weekend Daily</span></div>
+    <div class="stat"><span class="stat-num">Day 15</span><span class="stat-label">First Interview</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="phase-nav">
+  <a class="phase-pill pill-1" href="#phase1">🚀 Phase 1 · Days 1–15 · Foundation</a>
+  <a class="phase-pill pill-2" href="#phase2">⚡ Phase 2 · Days 16–30 · Interviews</a>
+  <a class="phase-pill pill-3" href="#resources">📚 Resources</a>
+</nav>
+
+<!-- ═══════════════ CONTAINER ═══════════════ -->
+<div class="container">
+
+  <!-- MILESTONES -->
+  <div class="milestones" style="margin-top:0; padding-top:0;">
+    <div class="milestone">
+      <div class="milestone-icon">🧠</div>
+      <div class="milestone-day">Day 3</div>
+      <div class="milestone-title">Project Mastery</div>
+      <div class="milestone-desc">Can explain every line of the distributed cache cold</div>
+    </div>
+    <div class="milestone">
+      <div class="milestone-icon">💻</div>
+      <div class="milestone-day">Day 7</div>
+      <div class="milestone-title">DSA Rhythm</div>
+      <div class="milestone-desc">2 LeetCode mediums/day consistently</div>
+    </div>
+    <div class="milestone">
+      <div class="milestone-icon">🏗️</div>
+      <div class="milestone-day">Day 10</div>
+      <div class="milestone-title">System Design Ready</div>
+      <div class="milestone-desc">Can design 5 core systems end-to-end</div>
+    </div>
+    <div class="milestone">
+      <div class="milestone-icon">🎯</div>
+      <div class="milestone-day">Day 13</div>
+      <div class="milestone-title">Profile Live</div>
+      <div class="milestone-desc">LinkedIn + resume updated, applications sent</div>
+    </div>
+    <div class="milestone">
+      <div class="milestone-icon">🔥</div>
+      <div class="milestone-day">Day 15</div>
+      <div class="milestone-title">First Interview</div>
+      <div class="milestone-desc">Mock interviews done, real interviews start</div>
+    </div>
+    <div class="milestone">
+      <div class="milestone-icon">🏆</div>
+      <div class="milestone-day">Day 30</div>
+      <div class="milestone-title">Offer Stage</div>
+      <div class="milestone-desc">Multiple active interview loops</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE BAR -->
+  <div class="timeline">
+    <h3>Time Allocation Per Topic</h3>
+    <div class="tl-row">
+      <div class="tl-label">DSA</div>
+      <div class="tl-bar-wrap"><div class="tl-bar" style="width:35%;background:linear-gradient(90deg,#ffa657,#e07b20);color:#0d1117;">LeetCode · 35%</div></div>
+      <div class="tl-note">~2 problems/day</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-label">System Design</div>
+      <div class="tl-bar-wrap"><div class="tl-bar" style="width:25%;background:linear-gradient(90deg,#bc8cff,#7c4fe0);color:#fff;">Design · 25%</div></div>
+      <div class="tl-note">1 system/2 days</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-label">Project</div>
+      <div class="tl-bar-wrap"><div class="tl-bar" style="width:15%;background:linear-gradient(90deg,#58a6ff,#1f6feb);color:#fff;">Deep Dive · 15%</div></div>
+      <div class="tl-note">Days 1–4</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-label">Java/Spring</div>
+      <div class="tl-bar-wrap"><div class="tl-bar" style="width:12%;background:linear-gradient(90deg,#f85149,#b91c1c);color:#fff;">Core · 12%</div></div>
+      <div class="tl-note">Days 3–8</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-label">Mocks + HR</div>
+      <div class="tl-bar-wrap"><div class="tl-bar" style="width:13%;background:linear-gradient(90deg,#3fb950,#196c2e);color:#fff;">Behavioural · 13%</div></div>
+      <div class="tl-note">Days 11–15+</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       PHASE 1
+  ════════════════════════════════════ -->
+  <div id="phase1" class="phase-header">
+    <div class="phase-icon icon-1">🚀</div>
+    <div class="phase-title">
+      <h2>Phase 1 — Foundation Sprint</h2>
+      <p>Days 1–15 · Build everything. Start interviewing by the end.</p>
+    </div>
+    <span class="phase-tag tag-1">Days 1–15</span>
+  </div>
+
+  <div class="callout callout-blue">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <strong>Working Professional Schedule:</strong> Mon–Fri: 7–10 PM (3h focused).
+      Sat–Sun: 9 AM–3 PM (6h). Total: 27h/week. No half-hearted sessions — phone off, Pomodoro 50/10.
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <h3 style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">
+    📅 WEEK 1 — Project + Java + DSA Kickoff (Days 1–7)
+  </h3>
+
+  <div class="week-grid">
+
+    <!-- DAY 1 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--blue)">Day 1 · Monday</div>
+          <div class="day-name">Project Deep Dive I</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Read CONCEPTS.md sections 1–3 (Overview, SET flow, GET flow) <span class="tag-inline t-project">Project</span></li>
+          <li>Trace SET flow live: run server, curl a key, read logs <span class="tag-inline t-project">Project</span></li>
+          <li>Write answers to: "What is this project?" in 60 seconds out loud <span class="tag-inline t-hr">HR</span></li>
+          <li>LeetCode: Two Sum + Valid Parentheses (warm-up) <span class="tag-inline t-dsa">DSA</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Goal: Explain the project overview without notes</div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--blue)">Day 2 · Tuesday</div>
+          <div class="day-name">Project Deep Dive II</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Study LRU + TTL + WAL sections deeply (CONCEPTS.md §4, §5) <span class="tag-inline t-project">Project</span></li>
+          <li>Read source: InMemoryKVStore.java + WriteAheadLog.java <span class="tag-inline t-project">Project</span></li>
+          <li>Practice: "Walk me through LRU implementation" out loud 3× <span class="tag-inline t-hr">HR</span></li>
+          <li>LeetCode: Best Time to Buy Stock + Contains Duplicate <span class="tag-inline t-dsa">DSA</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Goal: Explain LRU + WAL like talking to a senior eng</div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--blue)">Day 3 · Wednesday</div>
+          <div class="day-name">Project Deep Dive III + Java</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Study LSM Tree + Bloom Filter + Consistent Hashing (CONCEPTS.md §6, §7) <span class="tag-inline t-project">Project</span></li>
+          <li>Java: HashMap internals, ConcurrentHashMap, synchronized vs volatile <span class="tag-inline t-java">Java</span></li>
+          <li>LeetCode: Product of Array Except Self + Maximum Subarray <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Write 3 STAR stories (challenge, impact, teamwork) <span class="tag-inline t-hr">HR</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Goal: Explain consistent hashing ring on a whiteboard</div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--blue)">Day 4 · Thursday</div>
+          <div class="day-name">Project Mastery + Gossip/Raft</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Study Gossip Protocol + Raft Consensus (CONCEPTS.md §8, §9) <span class="tag-inline t-project">Project</span></li>
+          <li>Java: ThreadPool, ExecutorService, CompletableFuture, volatile <span class="tag-inline t-java">Java</span></li>
+          <li>Read Interview Q&A section, answer each one out loud <span class="tag-inline t-project">Project</span></li>
+          <li>LeetCode: 3Sum + Container with Most Water <span class="tag-inline t-dsa">DSA</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Goal: Explain Raft election without reading notes</div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--blue)">Day 5 · Friday</div>
+          <div class="day-name">Java Core + DSA</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Java: JVM internals, GC (G1 vs ZGC), memory model <span class="tag-inline t-java">Java</span></li>
+          <li>Spring Boot: Bean lifecycle, @Transactional, AOP, auto-config <span class="tag-inline t-java">Java</span></li>
+          <li>LeetCode: Binary Search + Search in Rotated Array + Find Min <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Write 2 more STAR stories (failure + leadership) <span class="tag-inline t-hr">HR</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Goal: Solid on Java concurrency basics</div>
+    </div>
+
+    <!-- DAY 6 -->
+    <div class="day-card weekend">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 6 · Saturday</div>
+          <div class="day-name">DSA Marathon + System Design I</div>
+        </div>
+        <div class="day-hours wknd">6h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode Blind 75: do 6 problems (arrays + strings block) <span class="tag-inline t-dsa">DSA</span></li>
+          <li>System Design: Design URL Shortener (full — requirements → DB → scale) <span class="tag-inline t-sys">System</span></li>
+          <li>System Design: Design Rate Limiter <span class="tag-inline t-sys">System</span></li>
+          <li>Java: REST API design, HTTP status codes, idempotency <span class="tag-inline t-java">Java</span></li>
+          <li>Update LinkedIn headline + about section (draft only) <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Power day — no shortcuts. 6 focused hours.</div>
+    </div>
+
+    <!-- DAY 7 -->
+    <div class="day-card weekend">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 7 · Sunday</div>
+          <div class="day-name">Trees + Graphs + System Design II</div>
+        </div>
+        <div class="day-hours wknd">6h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode: Binary Tree Level Order, Max Depth, Validate BST, LCA <span class="tag-inline t-dsa">DSA</span></li>
+          <li>LeetCode: Number of Islands, Clone Graph, Pacific Atlantic Water <span class="tag-inline t-dsa">DSA</span></li>
+          <li>System Design: Design Twitter Feed (timeline + fanout) <span class="tag-inline t-sys">System</span></li>
+          <li>Review all project interview Q&As (CONCEPTS.md §11) <span class="tag-inline t-project">Project</span></li>
+          <li>Record yourself answering "walk me through your project" — review it <span class="tag-inline t-hr">HR</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Checkpoint: Can you do 2 LeetCode mediums in 45 min?</div>
+    </div>
+
+  </div><!-- /week-grid -->
+
+  <!-- WEEK 2 -->
+  <h3 style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;margin-top:8px;">
+    📅 WEEK 2 — System Design + HR + Profile + Apply (Days 8–15)
+  </h3>
+
+  <div class="week-grid">
+
+    <!-- DAY 8 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 8 · Monday</div>
+          <div class="day-name">Linked Lists + Stacks + Java Spring</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode: Reverse Linked List, Merge Two Lists, Linked List Cycle, Reorder List <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Spring Boot: REST controllers, exception handling, validation, @Async <span class="tag-inline t-java">Java</span></li>
+          <li>System Design: Design Notification System <span class="tag-inline t-sys">System</span></li>
+          <li>LinkedIn: Add project with bullet points + metrics <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Goal: LinkedIn project section complete</div>
+    </div>
+
+    <!-- DAY 9 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 9 · Tuesday</div>
+          <div class="day-name">Dynamic Programming Intro</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode DP: Climbing Stairs, Coin Change, Longest Common Subsequence <span class="tag-inline t-dsa">DSA</span></li>
+          <li>LeetCode DP: House Robber, Jump Game, Word Break <span class="tag-inline t-dsa">DSA</span></li>
+          <li>HR: Write answers for "Why FAANG?", "Why this company?", "Where do you see yourself in 5 years?" <span class="tag-inline t-hr">HR</span></li>
+          <li>Finish resume — 1 page, metrics on every bullet <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">DP is 20% of FAANG interviews — don't skip</div>
+    </div>
+
+    <!-- DAY 10 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 10 · Wednesday</div>
+          <div class="day-name">System Design Deep Dive Day</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>System Design: Design WhatsApp / Chat System (websockets, presence) <span class="tag-inline t-sys">System</span></li>
+          <li>System Design: Design Distributed Cache (your project — nail this) <span class="tag-inline t-sys">System</span></li>
+          <li>Study CAP theorem, consistency models, PACELC <span class="tag-inline t-sys">System</span></li>
+          <li>LeetCode: Word Search + Combination Sum (backtracking) <span class="tag-inline t-dsa">DSA</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">You can design your own project better than anyone</div>
+    </div>
+
+    <!-- DAY 11 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 11 · Thursday</div>
+          <div class="day-name">Heaps + Priority Queues + Apply</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode: Top K Frequent, Kth Largest, Merge K Sorted Lists, Task Scheduler <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Apply to 10 companies on LinkedIn (FAANG + tier-2) <span class="tag-inline t-apply">Apply</span></li>
+          <li>HR: Practice "Tell me about a time you disagreed with your manager" <span class="tag-inline t-hr">HR</span></li>
+          <li>Java: Garbage Collection, memory leaks, heap dump analysis <span class="tag-inline t-java">Java</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Applications in, now execute daily</div>
+    </div>
+
+    <!-- DAY 12 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 12 · Friday</div>
+          <div class="day-name">Sliding Window + Two Pointers</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode: Longest Substring Without Repeating, Min Window Substring, Permutation in String <span class="tag-inline t-dsa">DSA</span></li>
+          <li>LeetCode: Two Pointers: Trapping Rain Water, 3Sum, Move Zeroes <span class="tag-inline t-dsa">DSA</span></li>
+          <li>System Design: Design Google Drive / Dropbox <span class="tag-inline t-sys">System</span></li>
+          <li>HR Q&A: "Greatest weakness", "Biggest achievement", "Conflict resolution" <span class="tag-inline t-hr">HR</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Sliding window appears in ~15% of coding rounds</div>
+    </div>
+
+    <!-- DAY 13 -->
+    <div class="day-card weekend">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 13 · Saturday</div>
+          <div class="day-name">Mock Interview Day I + Apply</div>
+        </div>
+        <div class="day-hours wknd">6h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Mock #1 (Pramp / Interviewing.io): 45-min coding round — timed, no hints <span class="tag-inline t-mock">Mock</span></li>
+          <li>Mock #2 (friend/colleague): System Design — design a cache <span class="tag-inline t-mock">Mock</span></li>
+          <li>Debrief: write what you got wrong, what to improve <span class="tag-inline t-mock">Mock</span></li>
+          <li>Apply to 15 more companies (use LinkedIn Easy Apply + referrals) <span class="tag-inline t-apply">Apply</span></li>
+          <li>Finalize LinkedIn: recommendations, skills, open-to-work badge <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">First mock. You will feel underprepared. That's the point.</div>
+    </div>
+
+    <!-- DAY 14 -->
+    <div class="day-card weekend">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 14 · Sunday</div>
+          <div class="day-name">Mock Interview Day II + Full Review</div>
+        </div>
+        <div class="day-hours wknd">6h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Mock #3: Full loop simulation — coding + system design + HR (2h) <span class="tag-inline t-mock">Mock</span></li>
+          <li>LeetCode contest or 4 random mediums — timed <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Review every STAR story, practice the project walkthrough one more time <span class="tag-inline t-hr">HR</span></li>
+          <li>System Design: Review notes on all 6 systems studied <span class="tag-inline t-sys">System</span></li>
+          <li>Reach out to 5 connections for referrals at target companies <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">By tonight: fully interview-ready</div>
+    </div>
+
+    <!-- DAY 15 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--yellow)">Day 15 · Monday</div>
+          <div class="day-name">🎯 First Real Interview</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Light warm-up: 2 easy LeetCode problems (no mediums today) <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Re-read project walkthrough answer one time <span class="tag-inline t-project">Project</span></li>
+          <li>Review target company's engineering blog / tech stack <span class="tag-inline t-apply">Apply</span></li>
+          <li>Give your first real interview 🔥 <span class="tag-inline t-mock">Interview</span></li>
+          <li>Write debrief notes immediately after — what was asked, what you'd change <span class="tag-inline t-mock">Mock</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Warm up, don't cram. Confidence beats cramming.</div>
+    </div>
+
+  </div><!-- /week-grid -->
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════
+       PHASE 2
+  ════════════════════════════════════ -->
+  <div id="phase2" class="phase-header">
+    <div class="phase-icon icon-2">⚡</div>
+    <div class="phase-title">
+      <h2>Phase 2 — Interview Execution</h2>
+      <p>Days 16–30 · Active interviews + sharpen gaps daily.</p>
+    </div>
+    <span class="phase-tag tag-2">Days 16–30</span>
+  </div>
+
+  <div class="callout callout-yellow">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <strong>Phase 2 Mindset shift:</strong> You are now in active interview mode. Daily DSA is maintenance (1–2 problems). Energy goes toward debrief → fix → reapply cycles. Every interview teaches you something. Track patterns.
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <h3 style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">
+    📅 WEEK 3 — Active Interviews + Advanced DSA (Days 16–22)
+  </h3>
+
+  <div class="week-grid">
+
+    <!-- DAY 16 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 16 · Tuesday</div>
+          <div class="day-name">Debrief + Graphs Advanced</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Debrief Day 15 interview — identify 1 coding gap + 1 system design gap <span class="tag-inline t-mock">Debrief</span></li>
+          <li>LeetCode: Course Schedule (topological sort), Alien Dictionary <span class="tag-inline t-dsa">DSA</span></li>
+          <li>LeetCode: Dijkstra's — Network Delay Time, Cheapest Flights <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Apply to 10 more companies <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Fix one gap at a time. Don't spiral.</div>
+    </div>
+
+    <!-- DAY 17 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 17 · Wednesday</div>
+          <div class="day-name">System Design: Database Layer</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Study: SQL vs NoSQL decision framework, indexing, sharding, replication <span class="tag-inline t-sys">System</span></li>
+          <li>System Design: Design YouTube / Video Streaming <span class="tag-inline t-sys">System</span></li>
+          <li>LeetCode: Advanced DP — Longest Increasing Subsequence, Edit Distance <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Mock: Ask a friend to give you a system design question cold <span class="tag-inline t-mock">Mock</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Know when to choose Cassandra vs Postgres vs Redis</div>
+    </div>
+
+    <!-- DAY 18 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 18 · Thursday</div>
+          <div class="day-name">Tries + Intervals</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode: Implement Trie, Search Suggestions System, Design Add and Search Words <span class="tag-inline t-dsa">DSA</span></li>
+          <li>LeetCode: Intervals — Merge Intervals, Insert Interval, Meeting Rooms II <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Java: Microservices patterns — circuit breaker, saga, event sourcing <span class="tag-inline t-java">Java</span></li>
+          <li>Apply + follow up on pending applications <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Trie problems appear at Amazon/Google frequently</div>
+    </div>
+
+    <!-- DAY 19 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 19 · Friday</div>
+          <div class="day-name">Bit Manipulation + Math</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode: Single Number, Number of 1 Bits, Reverse Bits, Missing Number <span class="tag-inline t-dsa">DSA</span></li>
+          <li>HR: Practice "Why are you leaving your current job?" — 3 versions <span class="tag-inline t-hr">HR</span></li>
+          <li>System Design: Design Search Autocomplete <span class="tag-inline t-sys">System</span></li>
+          <li>Compile list of questions to ask interviewers <span class="tag-inline t-hr">HR</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Prepare thoughtful questions — it shows seniority</div>
+    </div>
+
+    <!-- DAY 20 -->
+    <div class="day-card weekend">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 20 · Saturday</div>
+          <div class="day-name">Full Mock Loop</div>
+        </div>
+        <div class="day-hours wknd">6h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Mock #4: Coding round on Interviewing.io with real stranger (45 min) <span class="tag-inline t-mock">Mock</span></li>
+          <li>Mock #5: System design — design Instagram (1h, full structure) <span class="tag-inline t-mock">Mock</span></li>
+          <li>Mock #6: Behavioral — full 30-min HR round with a friend <span class="tag-inline t-mock">Mock</span></li>
+          <li>Review: What did you hedge on? What did you own? <span class="tag-inline t-mock">Debrief</span></li>
+          <li>Apply to 10 companies (referral priority this week) <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Simulate a real interview day: 3 rounds back-to-back</div>
+    </div>
+
+    <!-- DAY 21 -->
+    <div class="day-card weekend">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 21 · Sunday</div>
+          <div class="day-name">Weak Areas + LeetCode Contest</div>
+        </div>
+        <div class="day-hours wknd">6h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Do a LeetCode weekly contest (timed 1.5h — 4 problems) <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Target your #1 weak area (from interview debriefs) — 2h focused study <span class="tag-inline t-dsa">DSA</span></li>
+          <li>System Design: Design Uber (geolocation, matching, surge pricing) <span class="tag-inline t-sys">System</span></li>
+          <li>Write summary of all 6 system designs studied — 1 page each <span class="tag-inline t-sys">System</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Contest builds real interview pressure tolerance</div>
+    </div>
+
+    <!-- DAY 22 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--purple)">Day 22 · Monday</div>
+          <div class="day-name">Advanced Java + Microservices</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Java: Virtual threads (Java 21), Reactive programming, Project Loom <span class="tag-inline t-java">Java</span></li>
+          <li>Spring: Kafka integration, distributed transactions, 2PC vs Saga <span class="tag-inline t-java">Java</span></li>
+          <li>LeetCode: Median of Two Sorted Arrays, Sliding Window Maximum <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Follow up on all pending applications (email/LinkedIn message) <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Virtual threads is a hot Java 21 topic at FAANG</div>
+    </div>
+
+  </div><!-- /week-grid -->
+
+  <!-- WEEK 4 -->
+  <h3 style="color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;margin-top:8px;">
+    📅 WEEK 4 — Final Push + Offer Stage (Days 23–30)
+  </h3>
+
+  <div class="week-grid">
+
+    <!-- DAY 23 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 23 · Tuesday</div>
+          <div class="day-name">Hard LeetCode Day</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>LeetCode Hard: Trapping Rain Water II, Serialize/Deserialize Binary Tree <span class="tag-inline t-dsa">DSA</span></li>
+          <li>LeetCode Hard: Regular Expression Matching, Largest Rectangle in Histogram <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Review any failed interview: code the exact problem you struggled on <span class="tag-inline t-dsa">DSA</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Hard problems build mental toughness, not just skill</div>
+    </div>
+
+    <!-- DAY 24 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 24 · Wednesday</div>
+          <div class="day-name">System Design: Scalability Patterns</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Study: CDN, Load Balancers (L4 vs L7), API Gateway, Service Mesh <span class="tag-inline t-sys">System</span></li>
+          <li>Study: Event-driven architecture, Kafka, outbox pattern <span class="tag-inline t-sys">System</span></li>
+          <li>LeetCode: 2 mediums from recent contests <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Negotiate prep: research market salary for target roles + Levels.fyi <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Start thinking about negotiation — it compounds</div>
+    </div>
+
+    <!-- DAY 25 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 25 · Thursday</div>
+          <div class="day-name">HR Deep Prep + Company Research</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Research top 3 target companies: engineering blog, tech stack, recent launches <span class="tag-inline t-hr">HR</span></li>
+          <li>Tailor "Why this company?" answer for each company specifically <span class="tag-inline t-hr">HR</span></li>
+          <li>LeetCode: 2 mediums (keep the streak alive) <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Practice salary negotiation out loud ("I was thinking X based on market…") <span class="tag-inline t-hr">HR</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Company-specific answers land 3× better than generic</div>
+    </div>
+
+    <!-- DAY 26 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 26 · Friday</div>
+          <div class="day-name">Consolidation + Review</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Re-do 5 problems you got wrong in Week 1–2 (spaced repetition) <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Re-read system design notes — refresh all 8 systems in 1h <span class="tag-inline t-sys">System</span></li>
+          <li>Re-read STAR stories — refine the 3 weakest ones <span class="tag-inline t-hr">HR</span></li>
+          <li>Apply to 5 stretch companies (Google, Meta, etc.) <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Spaced repetition beats rereading new material at this stage</div>
+    </div>
+
+    <!-- DAY 27 -->
+    <div class="day-card weekend">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 27 · Saturday</div>
+          <div class="day-name">Full FAANG Simulation Day</div>
+        </div>
+        <div class="day-hours wknd">6h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Mock #7: 2 coding rounds back to back (45 min each, real timer) <span class="tag-inline t-mock">Mock</span></li>
+          <li>Mock #8: System Design — design something you haven't studied (cold) <span class="tag-inline t-mock">Mock</span></li>
+          <li>Mock #9: Full behavioral loop — leadership + conflict + failure + why FAANG <span class="tag-inline t-mock">Mock</span></li>
+          <li>Write: what would you do differently in every interview so far? <span class="tag-inline t-mock">Debrief</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">You should feel confident walking into any interview now</div>
+    </div>
+
+    <!-- DAY 28 -->
+    <div class="day-card weekend">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 28 · Sunday</div>
+          <div class="day-name">Rest + Light Review</div>
+        </div>
+        <div class="day-hours wknd">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Only 2 LeetCode problems (easy + medium). No pressure. <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Walk + exercise. Seriously. Physical state affects interview performance. <span class="tag-inline t-hr">HR</span></li>
+          <li>Review your top 5 STAR stories one final time <span class="tag-inline t-hr">HR</span></li>
+          <li>Prep interview-day checklist: good sleep, water, IDE setup, calm <span class="tag-inline t-mock">Prep</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Rest is preparation. Burnout kills performance.</div>
+    </div>
+
+    <!-- DAY 29 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--green)">Day 29 · Monday</div>
+          <div class="day-name">Maintenance Mode + Interviews</div>
+        </div>
+        <div class="day-hours">3h</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Daily: 2 LeetCode mediums (non-negotiable habit now) <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Give any scheduled real interviews <span class="tag-inline t-mock">Interview</span></li>
+          <li>Debrief immediately after each interview (write notes) <span class="tag-inline t-mock">Debrief</span></li>
+          <li>Track: applications sent, responses, rounds, offers in a spreadsheet <span class="tag-inline t-apply">Apply</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">Tracking pipeline = knowing which companies to prioritize</div>
+    </div>
+
+    <!-- DAY 30 -->
+    <div class="day-card">
+      <div class="day-head">
+        <div>
+          <div class="day-label" style="color:var(--yellow)">Day 30 · Tuesday</div>
+          <div class="day-name">🏆 Sprint Complete</div>
+        </div>
+        <div class="day-hours">—</div>
+      </div>
+      <div class="day-body">
+        <ul class="todo-list">
+          <li>Review: how many companies applied to? How many rounds done? <span class="tag-inline t-apply">Apply</span></li>
+          <li>Prioritize: which active loops are closest to offer? <span class="tag-inline t-apply">Apply</span></li>
+          <li>Continue: 2 LeetCode/day + 1 system design/week is the maintenance habit <span class="tag-inline t-dsa">DSA</span></li>
+          <li>Negotiate: never accept the first offer. Counter with data from Levels.fyi <span class="tag-inline t-hr">HR</span></li>
+        </ul>
+      </div>
+      <div class="day-footer">The sprint ends. The momentum doesn't.</div>
+    </div>
+
+  </div><!-- /week-grid -->
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════
+       RESOURCES
+  ════════════════════════════════════ -->
+  <div id="resources" class="phase-header">
+    <div class="phase-icon icon-3">📚</div>
+    <div class="phase-title">
+      <h2>Resources</h2>
+      <p>Curated — no fluff. One source per topic.</p>
+    </div>
+    <span class="phase-tag tag-3">Reference</span>
+  </div>
+
+  <div class="resources-grid">
+
+    <div class="resource-card">
+      <h4>💻 DSA (LeetCode)</h4>
+      <ul>
+        <li>Blind 75 list (NeetCode.io)</li>
+        <li>NeetCode 150 (grind order)</li>
+        <li>LeetCode Patterns by Sean Prashad</li>
+        <li>LeetCode Weekly Contests</li>
+        <li>AlgoExpert (if you prefer video)</li>
+      </ul>
+    </div>
+
+    <div class="resource-card">
+      <h4>🏗️ System Design</h4>
+      <ul>
+        <li>Designing Data-Intensive Applications (book)</li>
+        <li>System Design Primer (GitHub)</li>
+        <li>ByteByteGo newsletter + YouTube</li>
+        <li>Grokking the System Design Interview</li>
+        <li>Your own distributed cache project 🎯</li>
+      </ul>
+    </div>
+
+    <div class="resource-card">
+      <h4>☕ Java / Spring Boot</h4>
+      <ul>
+        <li>Java Concurrency in Practice (book)</li>
+        <li>Baeldung.com (Spring articles)</li>
+        <li>Java 21 release notes (virtual threads)</li>
+        <li>Spring Boot docs — official</li>
+        <li>Java Brains (YouTube — Spring)</li>
+      </ul>
+    </div>
+
+    <div class="resource-card">
+      <h4>🎭 Behavioral / HR</h4>
+      <ul>
+        <li>STAR method framework</li>
+        <li>"Cracking the Coding Interview" ch. 5</li>
+        <li>Amazon Leadership Principles (even for non-Amazon)</li>
+        <li>Glassdoor — company-specific HR questions</li>
+        <li>Levels.fyi — salary negotiation data</li>
+      </ul>
+    </div>
+
+    <div class="resource-card">
+      <h4>🎤 Mock Interviews</h4>
+      <ul>
+        <li>Pramp.com (free peer mocks)</li>
+        <li>Interviewing.io (real interviewers)</li>
+        <li>LeetCode mock interview mode</li>
+        <li>Ask colleagues / ex-colleagues</li>
+        <li>Record yourself on Loom — review cold</li>
+      </ul>
+    </div>
+
+    <div class="resource-card">
+      <h4>📤 Applying</h4>
+      <ul>
+        <li>LinkedIn Easy Apply (volume)</li>
+        <li>Referrals > cold apply (3× response rate)</li>
+        <li>Levels.fyi — find right level to apply to</li>
+        <li>Blind app — company culture intel</li>
+        <li>Airtable to track all applications</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- STRATEGY CARDS -->
+  <div class="strategy">
+    <h3>🧠 Daily DSA Approach (FAANG Level)</h3>
+    <p><strong>Pattern first, solution second.</strong> Before writing code, identify the pattern: sliding window, two pointers, BFS/DFS, DP, heap, trie. Name it out loud. FAANG interviewers reward pattern recognition over memorized solutions.</p>
+    <p><strong>Talk while you code.</strong> Narrate your thinking. Silence kills you in FAANG interviews. Say "I'm thinking about edge cases" or "I'll start with a brute force then optimize."</p>
+    <p><strong>Time yourself.</strong> Easy: 10 min. Medium: 25 min. Hard: 45 min. If you exceed it, note why — don't just watch solutions.</p>
+  </div>
+
+  <div class="strategy">
+    <h3>🏗️ System Design Framework (use every time)</h3>
+    <p><strong>1. Requirements (5 min)</strong> — Clarify functional + non-functional. Ask: scale, latency, consistency requirements.</p>
+    <p><strong>2. Capacity Estimation (3 min)</strong> — RPS, storage, bandwidth. Show you can do back-of-envelope math.</p>
+    <p><strong>3. High-Level Design (10 min)</strong> — Draw boxes: client, LB, API servers, DB, cache, CDN, queue.</p>
+    <p><strong>4. Deep Dive (15 min)</strong> — Interviewer will pick 1-2 components. Go deep on DB schema, cache strategy, consistency model, failure handling.</p>
+    <p><strong>5. Trade-offs (5 min)</strong> — What would you do differently at 10× scale? What did you sacrifice?</p>
+  </div>
+
+  <div class="strategy">
+    <h3>🎯 Project — Your Secret Weapon</h3>
+    <p>Your distributed cache project covers: <strong>LRU, TTL, WAL, LSM Tree, Bloom Filters, Consistent Hashing, Gossip Protocol, Read Repair, Raft Consensus, Micrometer metrics</strong>. That's 10 distributed systems concepts in one project.</p>
+    <p>When asked "design a distributed cache" — you don't design it. You <em>built</em> it. Walk them through your actual implementation. This is a rare and powerful position. Use it.</p>
+    <p><strong>Target companies where this lands hardest:</strong> Any company with a distributed systems / backend / platform engineering team — Amazon, Google, Uber, LinkedIn, Razorpay, PhonePe, Flipkart.</p>
+  </div>
+
+  <div class="callout callout-green">
+    <div class="callout-icon">✅</div>
+    <div class="callout-body">
+      <strong>The Non-Negotiables:</strong>
+      2 LeetCode problems every single day (even on interview days). 1 system design per 2 days for 30 days. Every interview gets a written debrief within 1 hour. Sleep 7h+. These four habits compound into an offer.
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  Built for the 30-day FAANG sprint · Start date: April 2026 · You've got this. 🚀
+</footer>
+
+<script>
+  // ── Checkboxes ──────────────────────────────────────────────
+  // Give every todo <li> a stable ID, inject a real checkbox,
+  // wrap the text in .todo-text, then restore state from localStorage.
+
+  const STORAGE_KEY = 'faang-roadmap-checks';
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+  document.querySelectorAll('.todo-list li').forEach((li, idx) => {
+    const id = 'todo-' + idx;
+
+    // Build checkbox
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = id;
+    cb.checked = !!saved[id];
+
+    // Wrap existing content in a span
+    const span = document.createElement('span');
+    span.className = 'todo-text';
+    // Move all child nodes into the span
+    while (li.firstChild) span.appendChild(li.firstChild);
+
+    li.appendChild(cb);   // checkbox first (flex order via CSS)
+    li.appendChild(span);
+
+    // Prepend checkbox so it appears on the left
+    li.insertBefore(cb, span);
+
+    // Apply saved state
+    if (cb.checked) li.classList.add('done');
+
+    // Toggle on checkbox click
+    cb.addEventListener('change', () => {
+      li.classList.toggle('done', cb.checked);
+      saved[id] = cb.checked;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+    });
+
+    // Also toggle when clicking the whole row (except the checkbox itself)
+    li.addEventListener('click', e => {
+      if (e.target === cb) return;
+      cb.checked = !cb.checked;
+      cb.dispatchEvent(new Event('change'));
+    });
+  });
+
+  // ── Progress bar per day-card ────────────────────────────────
+  document.querySelectorAll('.day-card').forEach(card => {
+    const items = card.querySelectorAll('.todo-list li');
+    if (!items.length) return;
+
+    const bar = document.createElement('div');
+    bar.style.cssText = `
+      height:3px; background:var(--border2);
+      border-radius:0 0 12px 12px; overflow:hidden;
+    `;
+    const fill = document.createElement('div');
+    fill.style.cssText = `
+      height:100%; width:0%; background:var(--green);
+      transition:width 0.3s ease; border-radius:inherit;
+    `;
+    bar.appendChild(fill);
+    card.appendChild(bar);
+
+    const updateBar = () => {
+      const done = card.querySelectorAll('.todo-list li.done').length;
+      fill.style.width = (done / items.length * 100) + '%';
+      fill.style.background = done === items.length ? 'var(--blue)' : 'var(--green)';
+    };
+
+    updateBar();
+    card.addEventListener('change', updateBar);
+    card.addEventListener('click', () => setTimeout(updateBar, 10));
+  });
+
+  // ── Nav pill active state on scroll ─────────────────────────
+  const sections = document.querySelectorAll('#phase1, #phase2, #resources');
+  const pills = document.querySelectorAll('.phase-pill');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        pills.forEach(p => p.style.opacity = '0.6');
+        const active = document.querySelector(`.phase-pill[href="#${e.target.id}"]`);
+        if (active) active.style.opacity = '1';
+      }
+    });
+  }, { threshold: 0.2 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
